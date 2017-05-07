@@ -115,19 +115,25 @@ function sendWikiResults(query,sender) {
 			pages.forEach(function(page) {
 				//Elements format - to push to elemebts array of Generic template 
 					let myElement = {
-						title: page.title,
-						subtitle: page.extract.substr(0,80).trim(),
+						title: '',
+						subtitle: '',
 						buttons: [{
 							"type": "postback",
 							"title": "Read more",
-							"payload": page.extract.substr(0, 1000).trim()
+							"payload": 'To be implemented'
 						},
 						{
 							"type": "web_url",
-							"url": "https://en.wikipedia.org/?curid=" + page.pageid,
+							"url": '',
 							"title": "View in browser"
 						}]
 					}
+					myElement.title = page.title
+					myElement.subtitle = page.extract.substr(0,80).trim()
+					if(page.extract !== '') {
+						myElement.buttons[0].payload = page.extract.substr(0, 1000).trim()
+					}
+					myElement.buttons[1].url = "https://en.wikipedia.org/?curid=" + page.pageid
 					genericTemplate.message.attachment.payload.elements.push(myElement)		
 			})
 			options.body = genericTemplate
