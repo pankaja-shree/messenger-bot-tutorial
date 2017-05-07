@@ -112,7 +112,7 @@ function sendWikiResults(query,sender) {
 		try{
 			body = JSON.parse(body)
 			let pages = body.query.pages
-			for(let i = 0 in pages) {
+			for(let i = 0; i < pages.length; i++) {
 				//Elements format - to push to elemebts array of Generic template 
 					let myElement = {
 						title: '',
