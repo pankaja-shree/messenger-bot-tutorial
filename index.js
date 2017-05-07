@@ -35,10 +35,11 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text.toLowerCase().trim()
+			//console.log(text)
 			if (text.toLowerCase().substr(0,4) == 'wiki'){ 
 				//search wiki 
 				let searchterm = text.replace("wiki ","")
-				console.log(searchterm)
+				//console.log(searchterm)
 				sendWikiResults(searchterm,sender)
 			}
 			else{
@@ -112,6 +113,7 @@ function sendWikiResults(query,sender) {
 		try{
 			body = JSON.parse(body)
 			let pages = body.query.pages
+			console.log(pages[0])
 			for(let i = 0; i < pages.length; i++) {
 				//Elements format - to push to elemebts array of Generic template 
 					let myElement = {
