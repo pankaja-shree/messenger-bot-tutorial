@@ -41,7 +41,6 @@ app.post('/webhook/', function (req, res) {
 				let searchterm = text.replace("wiki ","")
 				//console.log(searchterm)
 				sendWikiResults(searchterm,sender)
-				continue;
 			}
 			else{
 				sendHelp(sender)
@@ -50,7 +49,6 @@ app.post('/webhook/', function (req, res) {
 		if (event.postback && event.postback.payload) {
 			let txt = formatmsg(event.postback.payload)
 			sendTextMessage(sender, txt)
-			continue
 		}
 	}
 	// res.sendStatus(200)
