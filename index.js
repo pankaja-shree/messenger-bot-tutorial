@@ -112,19 +112,19 @@ function sendWikiResults(query,sender) {
 		try{
 			body = JSON.parse(body)
 			let pages = body.query.pages
-			for(page of pages){
+			for(var i=0 in pages){
 				//Elements format - to push to elemebts array of Generic template 
 					let myElement = {
-						title: page.title,
-						subtitle: page.extract.substr(0,80).trim(),
+						title: pages[i].title,
+						subtitle: pages[i].extract.substr(0,80).trim(),
 						buttons: [{
 							"type": "postback",
 							"title": "Read more",
-							"payload": page.extract.substr(0, 1000).trim()
+							"payload": pages[i].extract.substr(0, 1000).trim()
 						},
 						{
 							"type": "web_url",
-							"url": "https://en.wikipedia.org/?curid=" + page.pageid,
+							"url": "https://en.wikipedia.org/?curid=" + pages[i].pageid,
 							"title": "View in browser"
 						}]
 					}
