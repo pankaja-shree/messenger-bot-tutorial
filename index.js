@@ -37,7 +37,7 @@ app.post('/webhook/', function (req, res) {
 			let text = event.message.text.toLowerCase().trim()
 			if (text.substr(0,4) == 'wiki'){ 
 				//search wiki 
-				sendWikiResults(text.replace("wiki ",""),sender)
+				sendWikiResults((text.replace("wiki ","")),sender)
 				continue
 			}
 			else{
@@ -79,6 +79,7 @@ function sendHelp(sender) {
 
 function sendWikiResults(query,sender) {
 
+	const url = "https://graph.facebook.com/v2.6/me/messages"
 	//save generic template format. Wiki page results to be pushed to elements array
 	let genericTemplate = {
 			attachment:{
