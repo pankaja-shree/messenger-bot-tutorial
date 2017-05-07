@@ -112,7 +112,7 @@ function sendWikiResults(query,sender) {
 		try{
 			body = JSON.parse(body)
 			let pages = body.query.pages
-			for(page of pages) {
+			for(let i = 0 in pages) {
 				//Elements format - to push to elemebts array of Generic template 
 					let myElement = {
 						title: '',
@@ -128,12 +128,12 @@ function sendWikiResults(query,sender) {
 							"title": "View in browser"
 						}]
 					}
-					myElement.title = page.title
-					myElement.subtitle = page.extract.substr(0,80).trim()
+					myElement.title = pages[i].title
+					myElement.subtitle = pages[i].extract.substr(0,80).trim()
 					if(page.extract !== '') {
-						myElement.buttons[0].payload = page.extract.substr(0, 1000).trim()
+						myElement.buttons[0].payload = pages[i].extract.substr(0, 1000).trim()
 					}
-					myElement.buttons[1].url = "https://en.wikipedia.org/?curid=" + page.pageid
+					myElement.buttons[1].url = "https://en.wikipedia.org/?curid=" + pages[i].pageid
 					genericTemplate.message.attachment.payload.elements.push(myElement)		
 			}
 			options.body = genericTemplate
