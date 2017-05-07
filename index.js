@@ -1,13 +1,3 @@
-//This is still work in progress
-/*
-Please report any bugs to nicomwaks@gmail.com
-
-i have added console.log on line 48 
-
-
-
-
- */
 'use strict'
 
 const express = require('express')
@@ -46,11 +36,11 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let text = event.message.text
 			if (text === 'Generic'){ 
-				console.log("welcome to chatbot")
-				//sendGenericMessage(sender)
+				//console.log("welcome to chatbot")
+				sendGenericMessage(sender)
 				continue
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			sendHelp(sender)
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
@@ -65,8 +55,8 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
-function sendTextMessage(sender, text) {
-	let messageData = { text:text }
+function sendHelp(sender) {
+	let messageData = { text:"Send wiki space 'search term' to search wikipedia" }
 	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
