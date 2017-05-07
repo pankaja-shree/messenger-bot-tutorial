@@ -41,6 +41,7 @@ app.post('/webhook/', function (req, res) {
 				let searchterm = text.replace("wiki ","")
 				//console.log(searchterm)
 				sendWikiResults(searchterm,sender)
+				continue;
 			}
 			else{
 				sendHelp(sender)
@@ -49,6 +50,7 @@ app.post('/webhook/', function (req, res) {
 		if (event.postback && event.postback.payload) {
 			let txt = formatmsg(event.postback.payload)
 			sendTextMessage(sender, txt)
+			continue
 		}
 	}
 	// res.sendStatus(200)
@@ -115,7 +117,7 @@ function sendWikiResults(query,sender) {
 			//console.log(body)
 			let pages = body.query.pages
 			for(let key in pages) {
-				//Elements format - to push to elemebts array of Generic template 
+				//Elements format - to push to elements array of Generic template 
 					let myElement = {
 						title: '',
 						subtitle: '',
