@@ -37,7 +37,8 @@ app.post('/webhook/', function (req, res) {
 			let text = event.message.text.toLowerCase().trim()
 			if (text.substr(0,4) == 'wiki'){ 
 				//search wiki 
-				sendWikiResults((text.replace("wiki ","")),sender)
+				let searchterm = text.replace("wiki ","")
+				sendWikiResults(searchterm,sender)
 				continue
 			}
 			else{
