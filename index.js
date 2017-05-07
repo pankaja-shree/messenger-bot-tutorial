@@ -93,7 +93,9 @@ function sendWikiResults(query,sender) {
 
 	const wikiUrl = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts&exintro&explaintext&exsentences=5&exlimit=max&gsrsearch='+query
 	request(wikiUrl, function(error, response, body){
-		if(error) console.log(error)
+		if(error) {
+			console.log(error)
+		}
 		try{
 			body = JSON.parse(body)
 			let pages = body.query.pages
