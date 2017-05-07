@@ -45,7 +45,8 @@ app.post('/webhook/', function (req, res) {
 			}
 		}
 		if (event.postback && event.postback.payload) {
-			sendTextMessage(sender, event.postback.payload)
+			let txt = formatmsg(event.postback.payload)
+			sendTextMessage(sender, txt)
 			continue
 		}
 	}
@@ -143,6 +144,16 @@ function sendWikiResults(query,sender) {
 	})
 }
 
+//limit messages to 320 character limit
+function formatmsg(msg){
+    msg = msg.substr(0,320);
+    if(msg.lastIndexOf(".") == -1) {
+        return msg;
+    }
+    return msg.substr(0,msg.lastIndexOf(".")+1);
+}
+
+//normal text message
 function sendTextMessage(sender, msg) {
 	let messageData = { text:msg }
 	
