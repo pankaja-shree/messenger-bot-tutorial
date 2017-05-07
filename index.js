@@ -112,8 +112,9 @@ function sendWikiResults(query,sender) {
 		}
 		try{
 			body = JSON.parse(body)
+			//console.log(body)
 			let pages = body.query.pages
-			console.log(pages)
+			console.log(pages.length)
 			for(let i = 0; i < pages.length; i++) {
 				//Elements format - to push to elemebts array of Generic template 
 					let myElement = {
@@ -136,6 +137,7 @@ function sendWikiResults(query,sender) {
 						myElement.buttons[0].payload = pages[i].extract.substr(0, 1000).trim()
 					}
 					myElement.buttons[1].url = "https://en.wikipedia.org/?curid=" + pages[i].pageid
+					//console.log(myElement)
 					genericTemplate.message.attachment.payload.elements.push(myElement)		
 			}
 			options.body = genericTemplate
