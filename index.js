@@ -135,7 +135,7 @@ function sendWikiResults(query,sender) {
 					}
 					myElement.buttons[1].url = "https://en.wikipedia.org/?curid=" + page.pageid
 					genericTemplate.message.attachment.payload.elements.push(myElement)		
-			})
+			}
 			options.body = genericTemplate
 		}
 		catch(err) {
