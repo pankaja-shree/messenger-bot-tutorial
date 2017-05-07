@@ -79,9 +79,12 @@ function sendHelp(sender) {
 
 function sendWikiResults(query,sender) {
 
-	const url = "https://graph.facebook.com/v2.6/me/messages"
+	const url = "https://graph.facebook.com/v2.6/me/messages?access_token="+token
+
 	//save generic template format. Wiki page results to be pushed to elements array
 	let genericTemplate = {
+		recipient: {id: sender},
+		message: {
 			attachment:{
 				type: "template",
 				payload: {
@@ -90,6 +93,14 @@ function sendWikiResults(query,sender) {
 				}
 			}
 		}
+	}
+
+	var options = {
+		url: url,
+		method: 'POST',
+		body: genericTemplate,
+		json: true
+	}
 	
 	//send GET request to wiki API. body contains the json object from API
 
@@ -119,23 +130,23 @@ function sendWikiResults(query,sender) {
 					}
 					genericTemplate.message.attachment.payload.elements.push(myElement)		
 			}
+			options.body = genericTemplate
 		}
 		catch(err) {
-			console.log(err)
-			genericTemplate = {
-				"text": "Something went wrong, please try again."
+			console.log('error: '+err)
+			options = {
+				uri: url,
+				method: 'POST',
+				json: {
+					recipient: {id: sender},
+					message: {
+						"text": "Something went wrong, please try again."
+					}
+				}	
 			}
 		}
 		//Post results to send API
-		request({
-			url: 'https://graph.facebook.com/v2.6/me/messages',
-			qs: {access_token:token},
-			method: 'POST',
-			json: {
-				recipient: {id:sender},
-				message: genericTemplate,
-			}
-		}, function(error, response, body) {
+		request(options, function(error, response, body) {
 			if (error) {
 				console.log('Error sending messages: ', error)
 			} else if (response.body.error) {
