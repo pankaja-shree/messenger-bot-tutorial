@@ -131,7 +131,7 @@ function sendWikiResults(query,sender) {
 							"title": "View in browser"
 						}]
 					}
-					console.log(key)
+					console.log(pages[key]['title'])
 					/*
 					myElement.title = pages[i].title
 					myElement.subtitle = pages[i].extract.substr(0,80).trim()
