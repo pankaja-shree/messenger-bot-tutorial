@@ -134,7 +134,7 @@ function sendWikiResults(query,sender) {
 					
 					myElement.title = pages[key]['title']
 					myElement.subtitle = pages[key]['extract'].substr(0,80).trim()
-					if(page.extract !== '') {
+					if(pages[key]['extract'] !== '') {
 						myElement.buttons[0].payload = pages[key]['extract'].substr(0, 1000).trim()
 					}
 					myElement.buttons[1].url = "https://en.wikipedia.org/?curid=" + pages[key]['pageid']
