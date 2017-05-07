@@ -35,11 +35,11 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text.toLowerCase().trim()
-			if (text.substr(0,4) == 'wiki'){ 
+			console.log(text)
+			if (text.toLowerCase().substr(0,4) == 'wiki'){ 
 				//search wiki 
 				let searchterm = text.replace("wiki ","")
 				sendWikiResults(searchterm,sender)
-				continue
 			}
 			else{
 				sendHelp(sender)
@@ -48,10 +48,9 @@ app.post('/webhook/', function (req, res) {
 		if (event.postback && event.postback.payload) {
 			let txt = formatmsg(event.postback.payload)
 			sendTextMessage(sender, txt)
-			continue
 		}
 	}
-	res.sendStatus(200)
+	// res.sendStatus(200)
 })
 
 
