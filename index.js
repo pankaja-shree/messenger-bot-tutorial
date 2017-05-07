@@ -117,6 +117,7 @@ function sendWikiResults(query,sender) {
 			}
 		}
 		catch(err) {
+			console.log(err)
 			genericTemplate = {
 				"text": "Something went wrong, please try again."
 			}
