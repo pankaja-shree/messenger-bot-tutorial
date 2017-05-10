@@ -35,11 +35,11 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text.toLowerCase().trim()
-			console.log(text)
+			//console.log(text)
 			if (text.toLowerCase().substr(0,4) == 'wiki'){ 
 				//search wiki 
 				let searchterm = text.replace("wiki ","")
-				console.log(searchterm)
+				//console.log(searchterm)
 				sendWikiResults(searchterm,sender)
 				continue
 			}
@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
 function sendHelp(sender) {
-	let messageData = { text:"Send wiki space 'search term' to search wikipedia" }
+	let messageData = { text:"Send 'wiki<space><search term>' to search wikipedia" }
 	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
