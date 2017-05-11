@@ -256,17 +256,17 @@
   color: #fff; }
   .btn-blue:hover {
     color: #fff;
-    background-color: #2A8EFF;
-    border-color: #2A8EFF;
+    background-color: #1E37FF;
+    border-color: #1E37FF;
     box-shadow: none; }
   .btn-blue:focus, .btn-blue.focus {
     color: #fff;
-    background-color: #2A8EFF;
-    border-color: #2A8EFF; }
+    background-color: #1E37FF;
+    border-color: #1E37FF; }
   .btn-blue:active, .btn-blue.active {
     color: #fff;
-    background-color: #2A8EFF;
-    border-color: #2A8EFF;
+    background-color: #1E37FF;
+    border-color: #1E37FF;
     background-image: none;
     box-shadow: none; }
   .btn-blue.disabled, .btn-blue:disabled {
