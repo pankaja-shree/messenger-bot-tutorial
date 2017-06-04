@@ -1,6 +1,7 @@
 # Wiki-bot
 
 * A messenger bot to search wikipedia.
+* Chat with wiki-bot [here](https://m.me/wikisearchbot)
 
 ### References
 
